@@ -12,7 +12,7 @@
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : "2"
    },
-   "name" : "Regexp-Parser-Tiny",
+   "name" : "Regexp-Parser-Katana",
    "no_index" : {
       "directory" : [
          "t",
@@ -28,7 +28,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build::Tiny" : "0.035"
+            "Module::Build::Katana" : "0.035"
          }
       },
       "develop" : {

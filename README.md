@@ -1,14 +1,14 @@
 # NAME
 
-Regexp::Parser::Tiny - It's new $module
+Regexp::Parser::Katana - It's new $module
 
 # SYNOPSIS
 
-    use Regexp::Parser::Tiny;
+    use Regexp::Parser::Katana;
 
 # DESCRIPTION
 
-Regexp::Parser::Tiny is ...
+Regexp::Parser::Katana is ...
 
 # LICENSE
 

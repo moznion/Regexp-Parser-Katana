@@ -1,4 +1,4 @@
-package Regexp::Parser::Tiny;
+package Regexp::Parser::Katana;
 use 5.008001;
 use strict;
 use warnings;
@@ -124,15 +124,15 @@ __END__
 
 =head1 NAME
 
-Regexp::Parser::Tiny - It's new $module
+Regexp::Parser::Katana - It's new $module
 
 =head1 SYNOPSIS
 
-    use Regexp::Parser::Tiny;
+    use Regexp::Parser::Katana;
 
 =head1 DESCRIPTION
 
-Regexp::Parser::Tiny is ...
+Regexp::Parser::Katana is ...
 
 =head1 LICENSE
 

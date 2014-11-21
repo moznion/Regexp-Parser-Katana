@@ -1,6 +1,6 @@
-name = "Regexp-Parser-Tiny"
+name = "Regexp-Parser-Katana"
 # badges = ["travis"]
 authority="cpan:MOZNION"
 
-module_maker="ModuleBuildTiny"
+module_maker="ModuleBuildKatana"
 
