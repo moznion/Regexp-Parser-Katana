@@ -103,6 +103,20 @@ sub parse_tokens {
             next;
         }
 
+        if ($token_type_id == Regexp::Lexer::TokenType::LeftBracket->{id}) {
+            my @character_set_tokens;
+            for ($i++; $token = $tokens->[$i]; $i++) {
+                if ($token->{type}->{id} == Regexp::Lexer::TokenType::RightBracket->{id}) {
+                    last;
+                }
+
+                # TODO process like 0-9, a-z, etc...
+
+                push @character_set_tokens, $token;
+            }
+            $token = \@character_set_tokens;
+        }
+
         push @ast, {
             token             => $token,
             capture_group     => [sort {$a <=> $b} keys %capture_group],
