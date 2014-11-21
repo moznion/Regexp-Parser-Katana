@@ -2,5 +2,5 @@ name = "Regexp-Parser-Katana"
 # badges = ["travis"]
 authority="cpan:MOZNION"
 
-module_maker="ModuleBuildKatana"
+module_maker="ModuleBuildTiny"
 

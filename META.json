@@ -28,7 +28,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build::Katana" : "0.035"
+            "Module::Build::Tiny" : "0.035"
          }
       },
       "develop" : {
@@ -42,16 +42,30 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.008001"
+            "Regexp::Lexer" : "0.04",
+            "parent" : "0",
+            "perl" : "5.010001"
          }
       },
       "test" : {
          "requires" : {
+            "Test::Deep" : "0",
             "Test::More" : "0.98"
          }
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/moznion/Regexp-Parser-Katana/issues"
+      },
+      "homepage" : "https://github.com/moznion/Regexp-Parser-Katana",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/moznion/Regexp-Parser-Katana.git",
+         "web" : "https://github.com/moznion/Regexp-Parser-Katana"
+      }
+   },
    "version" : "0.01",
    "x_authority" : "cpan:MOZNION"
 }
