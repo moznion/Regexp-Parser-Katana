@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/moznion/Regexp-Parser-Katana.svg?branch=master)](https://travis-ci.org/moznion/Regexp-Parser-Katana)
 # NAME
 
 Regexp::Parser::Katana - It's new $module
