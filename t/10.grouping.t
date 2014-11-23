@@ -15,7 +15,6 @@ subtest 'basic case' => sub {
             non_capture_group => [],
             token => {
                 char => "x",
-                index => 1,
                 type => Regexp::Lexer::TokenType::Character,
             },
         },
@@ -24,7 +23,6 @@ subtest 'basic case' => sub {
             non_capture_group => [],
             token => {
                 char => ".",
-                index => 3,
                 type => Regexp::Lexer::TokenType::MatchAny,
             }
         },
@@ -33,7 +31,6 @@ subtest 'basic case' => sub {
             non_capture_group => [],
             token => {
                 char => ".",
-                index => 7,
                 type => Regexp::Lexer::TokenType::MatchAny,
             }
         },
@@ -42,7 +39,6 @@ subtest 'basic case' => sub {
             non_capture_group => [1],
             token => {
                 char => ".",
-                index => 12,
                 type => Regexp::Lexer::TokenType::MatchAny,
             }
         },
@@ -51,7 +47,6 @@ subtest 'basic case' => sub {
             non_capture_group => [2],
             token => {
                 char => ".",
-                index => 19,
                 type => Regexp::Lexer::TokenType::MatchAny,
             }
         },
@@ -60,7 +55,6 @@ subtest 'basic case' => sub {
             non_capture_group => [2, 3],
             token => {
                 char => ".",
-                index => 24,
                 type => Regexp::Lexer::TokenType::MatchAny,
             }
         },
@@ -69,7 +63,6 @@ subtest 'basic case' => sub {
             non_capture_group => [],
             token => {
                 char => "x",
-                index => 27,
                 type => Regexp::Lexer::TokenType::Character,
             },
         },

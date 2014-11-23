@@ -112,9 +112,17 @@ sub parse_tokens {
 
                 # TODO process like 0-9, a-z, etc...
 
-                push @character_set_tokens, $token;
+                push @character_set_tokens, {
+                    char => $token->{char},
+                    type => $token->{type},
+                };
             }
             $token = \@character_set_tokens;
+        }
+
+        # Filter out `index` from token object
+        if (ref $token eq 'HASH') {
+            delete $token->{index};
         }
 
         push @ast, {

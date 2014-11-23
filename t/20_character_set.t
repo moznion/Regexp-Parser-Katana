@@ -15,7 +15,6 @@ subtest 'paren in character set' => sub {
             non_capture_group => [],
             token => [{
                 char => "(",
-                index => 3,
                 type => Regexp::Lexer::TokenType::LeftParenthesis,
             }],
         },
@@ -24,7 +23,6 @@ subtest 'paren in character set' => sub {
             non_capture_group => [],
             token => {
                 char => ".",
-                index => 5,
                 type => Regexp::Lexer::TokenType::MatchAny,
             }
         },
@@ -33,7 +31,6 @@ subtest 'paren in character set' => sub {
             non_capture_group => [],
             token => [{
                 char => ")",
-                index => 7,
                 type => Regexp::Lexer::TokenType::RightParenthesis,
             }],
         },
