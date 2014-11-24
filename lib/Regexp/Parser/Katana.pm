@@ -85,7 +85,7 @@ sub parse_tokens {
 
             $lpnum--;
 
-            if (my $last_subtree = $subtrees[-1]) { # TODO can ref?
+            if (my $last_subtree = $subtrees[-1]) {
                 push @$last_subtree, $subtree;
             }
             else {
@@ -95,31 +95,31 @@ sub parse_tokens {
             next;
         }
 
-        # if ($token_type_id == Regexp::Lexer::TokenType::LeftBracket->{id}) {
-        #     my @character_set_tokens;
-        #     for ($i++; $token = $tokens->[$i]; $i++) {
-        #         if ($token->{type}->{id} == Regexp::Lexer::TokenType::RightBracket->{id}) {
-        #             last;
-        #         }
-        #
-        #         # TODO process like 0-9, a-z, etc...
-        #
-        #         push @character_set_tokens, {
-        #             char => $token->{char},
-        #             type => $token->{type},
-        #         };
-        #     }
-        #     $token = \@character_set_tokens;
-        # }
+        if ($token_type_id == Regexp::Lexer::TokenType::LeftBracket->{id}) {
+            my @character_set_tokens;
+            for ($i++; $token = $tokens->[$i]; $i++) {
+                if ($token->{type}->{id} == Regexp::Lexer::TokenType::RightBracket->{id}) {
+                    last;
+                }
+
+                # TODO process like 0-9, a-z, etc...
+
+                push @character_set_tokens, {
+                    char => $token->{char},
+                    type => $token->{type},
+                };
+            }
+            $token = \@character_set_tokens;
+        }
 
         # Filter out `index` from token object
         if (ref $token eq 'HASH') {
             delete $token->{index};
         }
 
-        if (my $last_subtree = $subtrees[-1]) { # TODO can ref?
+        if (my $last_subtree = $subtrees[-1]) {
             if (ref $last_subtree->[-1] ne 'ARRAY') {
-                push @$last_subtree, [[]]; # TODO
+                push @$last_subtree, [[]]; # XXX ?
             }
 
             push @{$last_subtree->[-1]->[-1]}, $token;

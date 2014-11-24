@@ -10,30 +10,30 @@ use Test::Deep;
 subtest 'paren in character set' => sub {
     my $ast = parse(qr{([(].[)])});
     cmp_deeply $ast, [
-        {
-            capture_group => [1],
-            non_capture_group => [],
-            token => [{
-                char => "(",
-                type => Regexp::Lexer::TokenType::LeftParenthesis,
-            }],
-        },
-        {
-            capture_group => [1],
-            non_capture_group => [],
-            token => {
-                char => ".",
-                type => Regexp::Lexer::TokenType::MatchAny,
-            }
-        },
-        {
-            capture_group => [1],
-            non_capture_group => [],
-            token => [{
-                char => ")",
-                type => Regexp::Lexer::TokenType::RightParenthesis,
-            }],
-        },
+        [
+            1,
+            undef,
+            [
+                [
+                    [
+                        {
+                            char => "(",
+                            type => Regexp::Lexer::TokenType::LeftParenthesis,
+                        },
+                    ],
+                    {
+                        char => ".",
+                        type => Regexp::Lexer::TokenType::MatchAny,
+                    },
+                    [
+                        {
+                            char => ")",
+                            type => Regexp::Lexer::TokenType::RightParenthesis,
+                        },
+                    ],
+                ],
+            ],
+        ],
     ];
 };
 
