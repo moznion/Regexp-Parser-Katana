@@ -11,65 +11,83 @@ subtest 'basic case' => sub {
     my $ast = parse(qr{x(.)((.)(?:.))(?:(.)(?:.))x});
     cmp_deeply $ast, [
         {
-            capture_group => [],
-            non_capture_group => [],
-            token => {
-                char => "x",
-                type => Regexp::Lexer::TokenType::Character,
-            },
+            char => "x",
+            type => Regexp::Lexer::TokenType::Character,
         },
+        [
+            1,
+            undef,
+            [
+                [
+                    {
+                        char => ".",
+                        type => Regexp::Lexer::TokenType::MatchAny,
+                    },
+                ],
+            ],
+        ],
+        [
+            2,
+            undef,
+            [
+                3,
+                undef,
+                [
+                    [
+                        {
+                            char => ".",
+                            type => Regexp::Lexer::TokenType::MatchAny,
+                        },
+                    ],
+                ],
+            ],
+            [
+                undef,
+                1,
+                [
+                    [
+                        {
+                            char => ".",
+                            type => Regexp::Lexer::TokenType::MatchAny,
+                        },
+                    ]
+                ],
+            ],
+        ],
+        [
+            undef,
+            2,
+            [
+                4,
+                undef,
+                [
+                    [
+                        {
+                            char => ".",
+                            type => Regexp::Lexer::TokenType::MatchAny,
+                        },
+                    ],
+                ],
+            ],
+            [
+                undef,
+                3,
+                [
+                    [
+                        {
+                            char => ".",
+                            type => Regexp::Lexer::TokenType::MatchAny,
+                        },
+                    ],
+                ],
+            ],
+        ],
         {
-            capture_group => [1],
-            non_capture_group => [],
-            token => {
-                char => ".",
-                type => Regexp::Lexer::TokenType::MatchAny,
-            }
-        },
-        {
-            capture_group => [2, 3],
-            non_capture_group => [],
-            token => {
-                char => ".",
-                type => Regexp::Lexer::TokenType::MatchAny,
-            }
-        },
-        {
-            capture_group => [2],
-            non_capture_group => [1],
-            token => {
-                char => ".",
-                type => Regexp::Lexer::TokenType::MatchAny,
-            }
-        },
-        {
-            capture_group => [4],
-            non_capture_group => [2],
-            token => {
-                char => ".",
-                type => Regexp::Lexer::TokenType::MatchAny,
-            }
-        },
-        {
-            capture_group => [],
-            non_capture_group => [2, 3],
-            token => {
-                char => ".",
-                type => Regexp::Lexer::TokenType::MatchAny,
-            }
-        },
-        {
-            capture_group => [],
-            non_capture_group => [],
-            token => {
-                char => "x",
-                type => Regexp::Lexer::TokenType::Character,
-            },
+            char => "x",
+            type => Regexp::Lexer::TokenType::Character,
         },
     ];
 };
-
-# TODO parens in [ ]
 
 done_testing;
 
