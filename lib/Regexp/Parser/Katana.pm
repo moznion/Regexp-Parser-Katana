@@ -102,7 +102,30 @@ sub parse_tokens {
                     last;
                 }
 
-                # TODO process like 0-9, a-z, etc...
+                # TODO support \x{xxx}
+                # TODO detect invalid syntax (unbalanced bracket)
+                $next_token = $tokens->[$i+1];
+                if ($next_token->{type}->{id} == Regexp::Lexer::TokenType::Minus->{id}) {
+                    my $character_set = $token->{char};
+                    $character_set .= $next_token->{char};
+
+                    $next_token = $tokens->[$i+2];
+                    if (!defined $next_token) {
+                        die 'invalid syntax!'; # TODO
+                    }
+
+                    $character_set .= $next_token->{char};
+
+                    push @character_set_tokens, {
+                        char => $character_set,
+                        type => $token->{type},
+                        is_character_set => 1,
+                    };
+
+                    $i += 2;
+
+                    next;
+                }
 
                 push @character_set_tokens, {
                     char => $token->{char},
