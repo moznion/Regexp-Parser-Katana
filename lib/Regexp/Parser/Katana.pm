@@ -10,9 +10,6 @@ our @EXPORT_OK = qw(parse);
 
 our $VERSION = '0.01';
 
-my $CAPTURE     = 1;
-my $NON_CAPTURE = 2;
-
 sub parse {
     my ($re) = @_;
 
