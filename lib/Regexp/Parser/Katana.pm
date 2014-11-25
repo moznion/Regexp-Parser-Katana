@@ -97,13 +97,22 @@ sub parse_tokens {
 
         if ($token_type_id == Regexp::Lexer::TokenType::LeftBracket->{id}) {
             my @character_set_tokens;
-            for ($i++; $token = $tokens->[$i]; $i++) {
+
+            $i++;
+
+            # Negate
+            # TODO Now is NOP, must be property of something
+            if ($tokens->[$i]->{type}->{id} == Regexp::Lexer::TokenType::Cap->{id}) {
+                $i++;
+            }
+
+            for (; $token = $tokens->[$i]; $i++) {
                 if ($token->{type}->{id} == Regexp::Lexer::TokenType::RightBracket->{id}) {
                     last;
                 }
 
-                # TODO support \x{xxx}
-                # TODO detect invalid syntax (unbalanced bracket)
+                # Check range notation or not
+                # TODO support \x{xxx} and etc...
                 $next_token = $tokens->[$i+1];
                 if ($next_token->{type}->{id} == Regexp::Lexer::TokenType::Minus->{id}) {
                     my $character_set = $token->{char};
@@ -114,24 +123,27 @@ sub parse_tokens {
                         die 'invalid syntax!'; # TODO
                     }
 
-                    $character_set .= $next_token->{char};
+                    if ($next_token->{type}->{id} != Regexp::Lexer::TokenType::RightBracket->{id}) {
+                        $character_set .= $next_token->{char};
 
-                    push @character_set_tokens, {
-                        char => $character_set,
-                        type => $token->{type},
-                        is_character_set => 1,
-                    };
+                        push @character_set_tokens, {
+                            char => $character_set,
+                            type => Regexp::Lexer::TokenType::Character,
+                            is_character_set_range => 1,
+                        };
 
-                    $i += 2;
+                        $i += 2;
 
-                    next;
+                        next;
+                    }
                 }
 
                 push @character_set_tokens, {
                     char => $token->{char},
-                    type => $token->{type},
+                    type => Regexp::Lexer::TokenType::Character,
                 };
             }
+
             $token = \@character_set_tokens;
         }
 

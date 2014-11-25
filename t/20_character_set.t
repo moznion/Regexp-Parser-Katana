@@ -29,12 +29,12 @@ subtest 'basic character set' => sub {
             {
                 char => '0-9',
                 type => Regexp::Lexer::TokenType::Character,
-                is_character_set => 1,
+                is_character_set_range => 1,
             },
             {
                 char => 'a-z',
                 type => Regexp::Lexer::TokenType::Character,
-                is_character_set => 1,
+                is_character_set_range => 1,
             },
         ]
     ]
@@ -51,7 +51,7 @@ subtest 'paren in character set' => sub {
                     [
                         {
                             char => "(",
-                            type => Regexp::Lexer::TokenType::LeftParenthesis,
+                            type => Regexp::Lexer::TokenType::Character,
                         },
                     ],
                     {
@@ -61,11 +61,47 @@ subtest 'paren in character set' => sub {
                     [
                         {
                             char => ")",
-                            type => Regexp::Lexer::TokenType::RightParenthesis,
+                            type => Regexp::Lexer::TokenType::Character,
                         },
                     ],
                 ],
             ],
+        ],
+    ];
+};
+
+subtest 'Hyphen or something only, not range' => sub {
+    my $ast = parse(qr{[x-][-x][^-x]}); ## no critic
+    cmp_deeply $ast, [
+        [
+            {
+                char => "x",
+                type => Regexp::Lexer::TokenType::Character,
+            },
+            {
+                char => "-",
+                type => Regexp::Lexer::TokenType::Character,
+            },
+        ],
+        [
+            {
+                char => "-",
+                type => Regexp::Lexer::TokenType::Character,
+            },
+            {
+                char => "x",
+                type => Regexp::Lexer::TokenType::Character,
+            },
+        ],
+        [
+            {
+                char => "-",
+                type => Regexp::Lexer::TokenType::Character,
+            },
+            {
+                char => "x",
+                type => Regexp::Lexer::TokenType::Character,
+            },
         ],
     ];
 };
